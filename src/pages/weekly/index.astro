@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('Weekly', ({ data }) => !data.draft);
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title="Weekly">
+<h1>Weekly</h1>
+<p style="margin-bottom: 32px; color: #555;">
+  AI 트렌드를 주간으로 정리합니다.
+</p>
+
+  {sortedPosts.length === 0 ? (
+    <p>아직 글이 없습니다.</p>
+  ) : (
+    sortedPosts.map((post) => (
+      <article class="post-card">
+        <div class="meta">
+          {post.data.pubDate.toLocaleDateString('ko-KR')}
+          {post.data.tags.map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+        <h2>
+          <a href={`/Weekly/${post.id}`}>{post.data.title}</a>
+        </h2>
+        <p>{post.data.description}</p>
+      </article>
+    ))
+  )}
+</BaseLayout>

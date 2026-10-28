@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('launches', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <article>
+    <div class="meta" style="margin-bottom: 12px; color: #666; font-size: 0.9rem;">
+      {post.data.pubDate.toLocaleDateString('ko-KR')}
+      {post.data.tags.map((tag) => (
+        <span class="tag">{tag}</span>
+      ))}
+    </div>
+
+    <h1>{post.data.title}</h1>
+    <p style="font-size: 1.15rem; color: #444; margin-bottom: 32px;">
+      {post.data.description}
+    </p>
+
+    <div class="content">
+      <Content />
+    </div>
+
+    {post.data.source && (
+      <p style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+        <strong>원본 링크:</strong>
+        <a href={post.data.source} target="_blank" rel="noopener">바로가기</a>
+      </p>
+    )}
+  </article>
+</BaseLayout>

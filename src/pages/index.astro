@@ -1,16 +1,40 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const tools = await getCollection('tools', ({ data }) => !data.draft);
+const sortedTools = tools.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="홈">
+  <section style="margin-bottom: 48px;">
+    <h1>Attack on Tike</h1>
+    <p style="font-size: 1.2rem; color: #444;">
+      AI에 관심 있는 사람들을 위한 실전 정보.<br />
+      거인은 아니지만, 진격은 한다.
+    </p>
+  </section>
+
+  <section>
+    <h2>최신 글</h2>
+    
+    {sortedTools.length === 0 ? (
+      <p>아직 글이 없습니다.</p>
+    ) : (
+      sortedTools.map((post) => (
+        <article class="post-card">
+          <div class="meta">
+            {post.data.pubDate.toLocaleDateString('ko-KR')}
+            {post.data.tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+          <h2>
+            <a href={`/tools/${post.id}`}>{post.data.title}</a>
+          </h2>
+          <p>{post.data.description}</p>
+        </article>
+      ))
+    )}
+  </section>
+</BaseLayout>
