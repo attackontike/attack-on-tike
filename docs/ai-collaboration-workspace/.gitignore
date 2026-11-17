@@ -1,0 +1,5 @@
+협의/**/대화/session.json
+협의/**/대화/sending.lock
+.env
+.env.*
+node_modules/

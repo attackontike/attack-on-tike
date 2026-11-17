@@ -1,0 +1,298 @@
+Codex 최종 검토 요청입니다. 앞선 합의 사항을 반영한 실제 파일 전문과 실제 검증 출력을 아래 전달합니다. 자동 재시도 기본값 0회로 제안합니다. 메시지 ID는 개인 일련번호가 재시작으로 겹칠 수 있어 참여자 ID + UUID로 보완했습니다. 잠금/하트비트 없는 경량 협업 원칙에는 동의하며 연결 도구의 한 건 전송 잠금은 CLI 동시 재개 충돌을 막기 위한 구현 세부사항입니다. 기존 CLI 권한 검사는 우회하지 않습니다. 다양한 AI에 적용 가능한지, 절차 모순·실제 도구 사용상의 중요한 결함이 있는지 검토해 주세요. 중요 수정이 없으면 아래 파일 버전에 대한 문서 내용 검토 동의를 명시해 주세요. 당신이 테스트나 파일 접근을 직접 수행했다고 주장하지 마세요. 1500자 이내로 답변해 주세요.
+
+--- 스킬모음/ai-collaboration/SKILL.md ---
+---
+name: ai-collaboration
+description: "여러 AI가 공유 워크스페이스에서 업무를 협의·분담·검토·인계하거나 다른 AI가 진행 중인 작업에 합류할 때 사용한다. Claude·Codex·Gemini 등 제품에 관계없이 역할과 메시지, 파일 수정 범위를 조정한다. 단일 AI의 독립 작업에 다중 협업을 강제하지 않는다."
+---
+
+# 공유 워크스페이스 AI 협업
+
+워크스페이스 최상위 메인지침을 먼저 적용하고, 이 스킬은 AI 사이의 업무 조정에 사용한다. 제품별 고정 서열이나 모든 AI가 같은 도구·기억·권한을 가진다는 가정을 두지 않는다. 사용자 요청과 실행 환경의 권한 범위 안에서 협력한다.
+
+## 1. 참여와 역할 확정
+
+1. 기존 협의 폴더와 현황·결정·미반영 메시지를 읽고 진행 중인 업무와 충돌하는지 확인한다. 처음 시작하면 업무 ID와 공유 폴더를 정한다.
+2. 참여자는 고유 참여자 ID, 제품, 실제 세션 식별자(모르면 미확인), 읽기·쓰기·실행·통신 능력과 제약을 스스로 선언한다. 동일 제품의 서로 다른 세션도 다른 참여자다. 타인의 능력은 응답이나 실행 근거 없이 확정하지 않는다.
+3. 사용자 지정을 우선하여 조정자·실행자·검토자를 배정하고 당사자의 수락을 기록한다. 조정자는 현황·범위·쟁점·최종 통합을 맡고, 실행자는 배정된 산출물을 작성하며, 검토자는 결과와 검증 근거를 확인한다. 인원이 부족하면 겸임을 명시하고 독립 검토로 표현하지 않는다.
+4. 목표, 산출물, 완료 조건, 범위와 제외 범위, 참여자, 파일별 작성자, 의존 관계, 검증 담당, 합의가 필요한 결정의 참여자, 재시도 한도와 승계 조건을 현황에 기록한다. 양식은 [협업 기록 양식](references/coordination-records.md)을 사용한다.
+
+## 2. 연락 방식과 메시지
+
+- 실제 가능한 공유 파일·CLI·API·사용자 중계 중 최소한의 방식을 선택한다. 연결 도구가 있어도 상대 세션이 실행 중인지, 기존 세션인지 새 세션인지 확인한다. 파일을 만들었다는 사실만으로 상대가 읽었거나 답할 수 있다고 간주하지 않는다.
+- 사용자에게 이미 승인받은 연결과 업무 범위에서는 재승인을 반복하지 않는다. 새 외부 전송·비용·권한이 기존 범위를 벗어나면 필요한 확인을 한다. 호출에 필요한 맥락만 전달하며 비밀정보를 보내지 않는다.
+- 공유 파일 메시지는 참여자별 폴더에 **1메시지 1신규 파일**로 기록한다. ID는 참여자 ID와 UUID 등 중앙 발급 없이 중복을 피하는 값의 조합으로 만든다. 재시작으로 초기화될 수 있는 단순 일련번호만을 ID로 삼지 않는다. 타인의 원문은 수정하지 않고 정정은 새 메시지로 남긴다.
+- 업무 ID, 메시지 ID, 발신자·수신자, 유형, 회신 대상 ID, 시각, 본문을 포함한다. 시각은 참고 정보이며 선점 권한의 근거로 쓰지 않는다.
+- `ack`는 수신 확인이다. `proposal`은 제안, `decision`은 특정 제안에 대한 동의·반대·보류, `result`는 수행 결과, `handoff`는 인계다. 각 decision은 제안 ID와 버전을 지정한다. 필요한 참여자 전원이 같은 버전에 명시적으로 동의한 경우만 합의로 표시한다. 내용이 바뀌면 영향을 받는 참여자의 재동의를 받는다.
+- 자동 재시도 기본값은 **0회**다. 실패·시간 초과는 기록하고 응답 대기로 둔다. 요청이 실제 도달했는지 불명확하면 세션과 기록을 먼저 확인하여 중복 전송을 피한다. 자동 재시도가 필요하면 횟수와 중복 방지 방법을 사전에 합의한다. 무한 폴링이나 무응답에 의한 승인을 사용하지 않는다.
+
+## 3. 분담과 동시 수정
+
+파일별 단일 작성자를 기본으로 하며 독립적인 범위만 병렬 실행한다. 현황 파일은 조정자 한 명이 갱신하고 마지막으로 반영한 메시지 ID 목록을 남긴다. 참여자는 그 이후 메시지도 확인한다. 현황에 적힌 담당은 협업 약속이며 OS 잠금이나 접근 권한을 보장하지 않는다.
+
+쓰기 직전에 대상 파일을 다시 읽고 기준 내용과 달라졌으면 해당 쓰기를 멈춘다. 타인의 변경을 덮어쓰거나 되돌려 충돌을 해결하지 않는다. 공통 파일이 추가로 필요하면 조정자가 작성자와 순서를 정한 뒤 진행한다. 직접 공동 편집이 필요하면 파일 내 범위와 통합 담당을 먼저 합의한다.
+
+조정자나 파일 담당이 동시에 선언되면 사용자 지정 → 기존 명시적 합의 순서로 확인한다. 해결되지 않으면 해당 범위 쓰기를 보류하고 사용자에게 결정할 쟁점을 설명한다. 타임스탬프·모델명·다수결로 임의의 승자를 정하지 않는다. 충돌과 독립적인 작업은 계속할 수 있다.
+
+## 4. 회의와 결정
+
+조정자는 현재 결정할 쟁점과 필요한 참여자를 지정하고, 참여자는 근거와 대안을 제안한다. 결정에는 채택 내용, 근거, 동의한 메시지 ID, 보류 또는 미해결 사항을 기록한다. 합의된 주제는 새로운 근거·요구 변경·검증 실패가 있을 때 재논의한다.
+
+단순 접속 성공, 모델의 일반적인 찬성, 조정자의 요약만으로 최종 산출물까지 승인받았다고 표현하지 않는다. 실제 참여자·검토한 버전·직접 실행 여부를 구분한다. 사용자 의도나 중요한 설계를 바꾸는 미해결 쟁점은 사용자에게 확인한다.
+
+## 5. 합류·연락 두절·인계
+
+- 새 AI는 능력 선언 후 현황과 기존 결정을 읽고 배정·수락을 거쳐 참여한다. 진행 중인 파일을 인계 없이 수정하지 않는다. 사용자 요청이 없는 AI 세션 생성이나 호출을 이 스킬 자체가 허가하지는 않는다.
+- 연결 실패나 상대 미기동은 응답 대기로 기록한다. 필요한 경우 다음 보고에서 실행·연결에 필요한 조치를 알린다. 배정된 독립 작업은 계속하며, 무응답만으로 타인의 파일을 인수하지 않는다.
+- 승계는 사용자 지정 또는 사전 합의된 대체 절차로 진행한다. 후임이 인수를 수락한 뒤 실제 파일·미반영 메시지·검증 결과를 대조하여 현황을 갱신한다. 기존 조정자는 복귀 시 변경된 체제를 확인하고 배정을 따른다. 두 사람이 동시에 현황을 쓰지 않는다.
+- 인계에는 현재 단계, 완료한 일, 다음 행동, 담당자, 수정 범위, 파일의 기준 상태, 마지막 검증 명령·결과, 미해결 쟁점을 담는다. 재시작한 AI는 기억 대신 이 기록과 실제 파일을 다시 읽는다.
+
+## 6. 검토와 완료
+
+실행자는 변경 파일과 검증 명령·결과·환경·대상 상태를 보고한다. 검토자는 실제 최종 내용과 근거를 확인하고 가능하면 관련 검증을 재현한다. 읽기 전용 또는 대화 전용 참여자의 검토는 내용 검토로 명시한다.
+
+작성자의 통과 보고와 현재 파일에서 재현된 실패가 충돌하면 실패 근거를 확인하고 동일 조건으로 재검증한다. 해결 전 완료 처리하지 않는다. 조정자는 최종 파일, 미해결 쟁점, 필요한 동의, 완료 조건을 대조하여 결과를 보고한다. 구조 검사 통과, 실제 실행 성공, 독립 검토, 도구 자동 등록을 서로 구분하며 미검증 범위를 밝힌다.
+
+
+--- 스킬모음/ai-collaboration/references/coordination-records.md ---
+# 협업 기록 양식
+
+단순한 업무는 현황 한 파일과 필요한 메시지만 둔다. 아래 경로는 업무 시작 시 정할 예시이며 전역 고정 경로가 아니다. 협의 자료는 로컬 스킬 원본 폴더 밖에서 관리한다.
+
+```text
+협의/<업무ID>/
+  현황.md                  조정자만 갱신
+  메시지/<참여자ID>/<참여자ID>-<UUID>.json
+  산출물/                  필요한 경우에만 생성
+```
+
+## 현황
+
+```text
+업무 ID / 목표 / 산출물:
+범위 / 제외 범위 / 완료 조건:
+참여자: ID, 제품, 세션, 능력과 확인 근거, 제약
+역할: 조정자 / 실행자 / 검토자 / 겸임 여부 / 수락 메시지 ID
+분담: 작업, 대상 파일, 단일 작성자, 의존 관계, 검증 담당
+단계: 제안 / 합의 / 실행 / 검토 / 응답 대기 / 완료
+현재 상태 / 다음 행동 / 미해결 쟁점:
+결정: 제안 ID·버전, 내용, 근거, 필요한 동의자, decision ID, 보류 사유
+최종 검증: 명령, 환경, 대상 파일 상태, 결과, 미검증 범위
+연결: 실제 방식, 세션, 자동 재시도 한도(기본 0회)
+승계: 조건, 대체 담당, 수락/인계 메시지 ID
+마지막 반영 메시지: 참여자별 메시지 ID 또는 반영 ID 목록
+```
+
+## 메시지
+
+```json
+{
+  "schemaVersion": 1,
+  "taskId": "example-task",
+  "id": "agent-a-<UUID>",
+  "from": "agent-a",
+  "to": ["agent-b", "agent-c"],
+  "type": "proposal",
+  "replyTo": null,
+  "proposalVersion": 1,
+  "sentAt": "<ISO 8601>",
+  "body": "이곳에 실제 협의 내용을 기록한다."
+}
+```
+
+본문은 실제 참여자가 사용한 언어로 기록한다. 예제 필드는 필요한 값으로 바꾼다. `ack`와 `decision`은 별도 의미를 가진다. decision 본문에는 동의·반대·보류와 그 이유를 적고 대상 제안과 버전을 명시한다. 전달 도구가 요청·응답을 하나의 기록에 묶는 경우에도 발신자·원문·세션·응답 대응 관계와 실제 수신 여부를 식별할 수 있게 보존한다.
+
+## 인계
+
+```text
+발신 / 수신 / 업무 ID / 회신 대상:
+현재 단계 / 완료한 일 / 다음 행동:
+인계할 역할과 파일 범위 / 인계 시 기준 상태:
+검증 명령·결과·환경 / 확인하지 못한 항목:
+미해결 쟁점 / 필요한 결정:
+후임 수락 메시지 ID:
+```
+
+## 적용 점검
+
+- 세 번째 AI가 합류: ID와 실제 능력을 선언하고 현황·기존 결정 확인 → 범위 배정과 수락 → 인계받은 범위만 수정.
+- 공통 파일 필요: 해당 쓰기는 보류하고 단일 작성자와 순서 확정 → 독립 작업은 계속.
+- 조정자 두절: 자기 메시지에 대기 상태 기록 → 기존 독립 작업 계속 → 사용자 지정/사전 합의에 따라 후임 수락 후 승계.
+- 검토 실패: 명령·환경·파일 상태 기록 → 현재 최종 파일로 재현 → 수정과 재검증 후 완료 판단.
+- 단일 AI 작업: 다른 참여자가 필요한 요청이 아니면 협업 역할과 회의를 새로 만들지 않음.
+
+
+--- 도구/claude-bridge/bridge.mjs ---
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import { fileURLToPath } from 'node:url';
+import { spawn } from 'node:child_process';
+import { randomUUID } from 'node:crypto';
+
+export const workspace = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+const defaultStore = path.join(workspace, '협의', 'ai-collaboration', '대화');
+
+export function findClaude(env = process.env) {
+  const candidates = [env.CLAUDE_BRIDGE_EXE];
+  for (const dir of (env.PATH || '').split(path.delimiter)) {
+    if (!dir) continue;
+    candidates.push(path.join(dir, process.platform === 'win32' ? 'claude.exe' : 'claude'));
+    if (process.platform === 'win32') candidates.push(path.join(dir, 'node_modules', '@anthropic-ai', 'claude-code', 'bin', 'claude.exe'));
+  }
+  if (process.platform === 'win32' && env.APPDATA) candidates.push(path.join(env.APPDATA, 'npm', 'node_modules', '@anthropic-ai', 'claude-code', 'bin', 'claude.exe'));
+  candidates.push(path.join(os.homedir(), '.local', 'bin', process.platform === 'win32' ? 'claude.exe' : 'claude'));
+  const found = candidates.find(file => file && fs.existsSync(file) && fs.statSync(file).isFile());
+  if (!found) throw new Error('Claude 실행 파일을 찾지 못했습니다. CLAUDE_BRIDGE_EXE에 실행 파일의 경로를 지정하세요.');
+  return found;
+}
+
+export function runClaude(executable, args, input, timeoutMs = 180000) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(executable, args, { cwd: workspace, shell: false, windowsHide: true, stdio: ['pipe', 'pipe', 'pipe'] });
+    let output = '';
+    let errors = '';
+    let timedOut = false;
+    let overflow = false;
+    const timer = setTimeout(() => { timedOut = true; child.kill(); }, timeoutMs);
+    const collect = (stream, isError) => stream.on('data', chunk => {
+      if (isError) errors += chunk.toString('utf8');
+      else output += chunk.toString('utf8');
+      if (Buffer.byteLength(output) + Buffer.byteLength(errors) > 8 * 1024 * 1024) { overflow = true; child.kill(); }
+    });
+    // setEncoding retains split multibyte Korean characters across chunks.
+    child.stdout.setEncoding('utf8');
+    child.stderr.setEncoding('utf8');
+    collect(child.stdout, false);
+    collect(child.stderr, true);
+    child.stdin.on('error', () => {});
+    child.once('error', error => { clearTimeout(timer); reject(error); });
+    child.once('close', code => {
+      clearTimeout(timer);
+      if (timedOut) return reject(new Error('Claude 응답 시간 초과. 자동 재전송하지 않습니다. history와 Claude 세션을 확인하세요.'));
+      if (overflow) return reject(new Error('Claude 출력 용량 한도 초과. 자동 재전송하지 않습니다.'));
+      if (code !== 0) return reject(new Error(`Claude 종료 코드 ${code}: ${(errors || output).slice(0, 2000)}`));
+      try {
+        const result = JSON.parse(output);
+        if (result.is_error || result.subtype !== 'success' || typeof result.result !== 'string' || !result.result.trim()) throw new Error(result.result || result.subtype || '빈 응답');
+        if (typeof result.session_id !== 'string' || !/^[0-9a-f-]{36}$/i.test(result.session_id)) throw new Error('유효한 session_id가 없습니다.');
+        resolve(result);
+      } catch (error) { reject(new Error(`Claude 응답 처리 실패: ${error.message}`)); }
+    });
+    child.stdin.end(input, 'utf8');
+  });
+}
+
+export async function send(message, { store = defaultStore, execute = runClaude, executable, timeoutMs = 180000, from = 'local-agent', taskId = 'ai-collaboration' } = {}) {
+  if (typeof message !== 'string' || !message.trim()) throw new Error('빈 메시지는 보낼 수 없습니다.');
+  if (![from, taskId].every(value => typeof value === 'string' && /^[a-z0-9][a-z0-9-]{0,63}$/.test(value))) throw new Error('from과 taskId에는 소문자 영문, 숫자, 하이픈을 사용하세요.');
+  fs.mkdirSync(store, { recursive: true });
+  const lock = path.join(store, 'sending.lock');
+  let lockFd;
+  try { lockFd = fs.openSync(lock, 'wx'); }
+  catch (error) { if (error.code === 'EEXIST') throw new Error('다른 전송이 진행 중이거나 이전 전송의 잠금이 남아 있습니다. 자동으로 잠금을 탈취하지 않습니다.'); throw error; }
+  const id = randomUUID();
+  const entryFile = path.join(store, `${id}.json`);
+  const stateFile = path.join(store, 'session.json');
+  let entry;
+  try {
+    fs.writeFileSync(lockFd, JSON.stringify({ pid: process.pid, startedAt: new Date().toISOString(), id }));
+    const state = fs.existsSync(stateFile) ? JSON.parse(fs.readFileSync(stateFile, 'utf8')) : { sessionId: randomUUID(), established: false };
+    if (!/^[0-9a-f-]{36}$/i.test(state.sessionId) || typeof state.established !== 'boolean') throw new Error('세션 상태 파일이 손상되었습니다.');
+    // Persist the chosen ID before sending, including on a first-turn failure.
+    fs.writeFileSync(stateFile, JSON.stringify(state, null, 2), 'utf8');
+    entry = { schemaVersion: 1, id, taskId, sessionId: state.sessionId, sentAt: new Date().toISOString(), status: 'sending', from, to: 'claude-code-cli', message };
+    fs.writeFileSync(entryFile, JSON.stringify(entry, null, 2), { encoding: 'utf8', flag: 'wx' });
+    const args = ['--print', '--output-format', 'json', '--tools', '', '--strict-mcp-config', '--mcp-config', '{"mcpServers":{}}', '--permission-mode', 'dontAsk'];
+    args.push(state.established ? '--resume' : '--session-id', state.sessionId);
+    const result = await execute(executable || findClaude(), args, message, timeoutMs);
+    if (result.session_id !== state.sessionId) throw new Error('요청한 세션과 응답 세션이 다릅니다.');
+    entry.status = 'received';
+    entry.receivedAt = new Date().toISOString();
+    entry.reply = result.result;
+    entry.costEstimateUsd = result.total_cost_usd ?? null;
+    fs.writeFileSync(entryFile, JSON.stringify(entry, null, 2), 'utf8');
+    fs.writeFileSync(stateFile, JSON.stringify({ sessionId: result.session_id, established: true }, null, 2), 'utf8');
+    return entry;
+  } catch (error) {
+    if (entry) { entry.status = 'failed'; entry.error = error.message; fs.writeFileSync(entryFile, JSON.stringify(entry, null, 2), 'utf8'); }
+    throw error;
+  } finally {
+    fs.closeSync(lockFd);
+    fs.unlinkSync(lock);
+  }
+}
+
+export function history(store = defaultStore) {
+  if (!fs.existsSync(store)) return [];
+  return fs.readdirSync(store).filter(name => /^[0-9a-f-]{36}\.json$/i.test(name)).map(name => JSON.parse(fs.readFileSync(path.join(store, name), 'utf8'))).sort((a, b) => a.sentAt.localeCompare(b.sentAt));
+}
+
+async function main(args) {
+  const [command, ...rest] = args;
+  if (command === 'status') return { executable: findClaude(), state: fs.existsSync(path.join(defaultStore, 'session.json')) ? JSON.parse(fs.readFileSync(path.join(defaultStore, 'session.json'), 'utf8')) : null, store: defaultStore, locked: fs.existsSync(path.join(defaultStore, 'sending.lock')) };
+  if (command === 'history') return history();
+  if (command === 'send') {
+    const options = {};
+    while (rest.length) {
+      const key = rest.shift();
+      if (!['--file', '--from', '--task'].includes(key) || !rest.length || Object.hasOwn(options, key)) throw new Error('잘못된 전송 옵션');
+      options[key] = rest.shift();
+    }
+    if (!options['--file']) throw new Error('--file이 필요합니다.');
+    const entry = await send(fs.readFileSync(path.resolve(options['--file']), 'utf8').replace(/^\uFEFF/, ''), { from: options['--from'] || 'local-agent', taskId: options['--task'] || 'ai-collaboration' });
+    const { message, ...summary } = entry;
+    return summary;
+  }
+  throw new Error('사용법: node 도구/claude-bridge/bridge.mjs status | history | send --file <UTF-8 메시지 파일> [--from <참여자>] [--task <업무>]');
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  main(process.argv.slice(2)).then(result => process.stdout.write(`${JSON.stringify(result, null, 2)}\n`)).catch(error => { process.stderr.write(`${error.message}\n`); process.exitCode = 1; });
+}
+
+
+--- 도구/claude-bridge/USAGE.md ---
+# Claude 연결 도구
+
+Node.js와 설치·인증된 Claude Code CLI를 사용한다. 추가 패키지와 API 키 파일은 만들지 않는다. 명령은 워크스페이스 최상위 기준이다.
+
+```powershell
+node 도구/claude-bridge/bridge.mjs status
+node 도구/claude-bridge/bridge.mjs send --file 협의/ai-collaboration/두번째-메시지.txt --from codex --task ai-collaboration
+node 도구/claude-bridge/bridge.mjs history
+node --check 도구/claude-bridge/bridge.mjs
+node --test 도구/claude-bridge/bridge.test.mjs
+```
+
+`send`는 UTF-8 메시지 파일을 읽어 CLI의 표준 입력으로 전달한다. 메시지를 셸 명령으로 해석하지 않는다. 최초 호출에서 전용 세션 ID를 만들고 성공한 이후에는 명시적 `--resume`으로 같은 세션을 이어간다. 현재 열려 있는 다른 Claude 창과 동일한 세션을 제어하는 도구는 아니다.
+
+연결은 [프로그램 방식 실행 공식 안내](https://code.claude.com/docs/en/headless)를 따르며, CLI의 기존 인증과 조직 정책을 사용한다. 권한 우회 옵션은 사용하지 않는다. 대화용 호출에 내장 도구와 MCP 서버를 제공하지 않으므로 검토할 파일 본문과 검증 결과를 메시지에 직접 포함한다. 모델에게 파일을 읽거나 테스트했다고 주장하지 않도록 검토 범위를 명시한다. 일반 CLI의 기존 시작 설정은 로드될 수 있다.
+
+`--from`은 발신 참여자 ID이며 생략 시 `local-agent`다. 다른 AI도 같은 명령을 자신의 ID로 실행할 수 있다. ID는 자기 선언이며 인증 수단은 아니다. `--task`는 기록을 구분하는 업무 ID다. 현재 저장소는 한 공유 협의 세션이므로 서로 무관한 업무의 세션을 격리하는 기능은 제공하지 않는다. 다른 제품의 AI를 호출하는 연결부는 아직 구현하지 않았다.
+
+실행 파일은 PATH와 일반 설치 위치에서 탐색한다. 탐색되지 않으면 `CLAUDE_BRIDGE_EXE` 환경변수에 실제 실행 파일 경로를 지정한다. 인증 정보는 이 변수에 넣지 않는다.
+
+기록은 [공유 대화 폴더](../../협의/ai-collaboration/대화/)에 저장한다. 메시지마다 UUID 파일을 만들고 요청·응답 원문과 상태를 보존한다. 세션 상태와 동시에 한 건만 보내기 위한 전송 잠금도 같은 폴더에 둔다. 자동 재시도는 없고 기본 제한 시간은 180초다. API 비용 추정치가 있으면 함께 기록하며 실제 청구액으로 단정하지 않는다.
+
+실패·시간 초과 후에는 대화 기록과 Claude 세션을 확인하고 중복 도달 여부를 판단한 뒤 재전송한다. 첫 호출의 응답이 유실되어 같은 세션 ID가 이미 존재하면 원래 세션 상태를 확인하고 복구해야 한다. 프로세스가 강제 종료되어 잠금이 남으면 해당 전송 프로세스와 세션을 먼저 확인한다. 도구는 잠금을 자동으로 탈취하거나 세션을 초기화하지 않는다.
+
+샌드박스가 서버 접속이나 CLI의 세션 저장을 차단하면 환경의 정식 실행 승인 절차를 사용한다. 네트워크·인증 실패를 응답 성공으로 표시하지 않는다.
+
+
+--- 협의/ai-collaboration/검증결과.txt ---
+✔ 첫 전송과 후속 전송은 같은 세션을 사용하고 한국어와 인용문을 그대로 보존한다 (34.6181ms)
+✔ 진행 중인 전송의 잠금을 다른 전송이 탈취하지 않는다 (4.9819ms)
+✔ 실패 기록을 보존하고 자동 재시도하지 않으며 잠금을 해제한다 (7.1263ms)
+✔ 세션이 달라진 응답을 성공으로 저장하지 않는다 (13.2162ms)
+✔ 실제 자식 프로세스에서 JSON 및 한국어 응답을 받는다 (92.6643ms)
+✔ 시간 초과와 잘못된 JSON을 성공으로 처리하지 않는다 (222.39ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 487.1191
+ൻ ∠瑳瑡獵㨢∠慰獳摥Ⱒ਍†挢畯瑮㨢㈠ബ ∠歳汩獬㨢嬠਍††ൻ ††∠慮敭㨢∠楡挭汯慬潢慲楴湯Ⱒ਍†††搢獥牣灩楴湯㨢∠韬겟䄠肰떳鳬₠鯬겁諬颎鷬ꒊ韬鲄薗곫벥醘鷬슘蒶诫슴育蛭슠뢝돪颕뇪颂ꒋꗫ₸䥁냪₀꟬視醤鷬₸黬薗韬ₐ闭颥闭₠闫₌苬ꦚ闭ꒋ‮汃畡敤럂潃敤쉸䞷浥湩⁩鏫₱ꃬ袒韬ₐ듪蒳韬뒝궗闭벳钩诬肧‬賭벝颈ꃬₕ닫蒜ꗫ₼ꇬ閠闭ꒋ‮诫벝䄠额薏ꛫ₽黬薗韬ₐ诫醤醘韬蒝閰ꃬ颕꟬₀闬钊诫⺤Ⱒ਍†††瀢瑡≨›䌢尺ぜ䄰彉塅屐ꒋꓬ䆑겵뛬鲋黬岑ꒊ苭ꢪ鷬岌慜⵩潣汬扡牯瑡潩屮卜䥋䱌洮≤਍††ⱽ਍††ൻ ††∠慮敭㨢∠歳汩⵬牣慥潴≲ബ ††∠敤捳楲瑰潩≮›뒝貛臭ꒊ軭뒝諬邗蓬ₜ黬겂髬₩냪ꖊ闭ₜ諬겂鷬₄菬鲡貧鏫낱苫ₘ룪뒡ꒊ苭蒝颈ꃬ슕鲰蓬슠育ꛬꂕ貕겂髬鲕诫⺤颀黬낸蛬鲰蓬ₜ鏬钊ꒊ苭蒝貧鏫뒖ꓬ馀달벟ꒊ苭€菬놄鷬₴ꫫ膠鷬₸髬궲韬ₐꃬꦚ闭납‬黬낸蛬鲰蓬ₜ黬뒲ꗫ₼黬놄闭₴诫벝諫ₔ髬궲돪₼뗪蒶闭ꒋ∮ബ ††∠慰桴㨢∠㩃屜〰䥁䕟偘屜诫醤䥁뗪閶诬醞屜諬겂ꫫ貝屜歳汩⵬牣慥潴屲卜䥋䱌洮≤਍††ൽ 崠਍ൽ嬊਍†ൻ †∠慮敭㨢∠楡挭汯慬潢慲楴湯Ⱒ਍††搢獥牣灩楴湯㨢∠韬겟䄠肰떳鳬₠鯬겁諬颎鷬ꒊ韬鲄薗곫벥醘鷬슘蒶诫슴育蛭슠뢝돪颕뇪颂ꒋꗫ₸䥁냪₀꟬視醤鷬₸黬薗韬ₐ闭颥闭₠闫₌苬ꦚ闭ꒋ‮汃畡敤럂潃敤쉸䞷浥湩⁩鏫₱ꃬ袒韬ₐ듪蒳韬뒝궗闭벳钩诬肧‬賭벝颈ꃬₕ닫蒜ꗫ₼ꇬ閠闭ꒋ‮诫벝䄠额薏ꛫ₽黬薗韬ₐ诫醤醘韬蒝閰ꃬ颕꟬₀闬钊诫⺤Ⱒ਍††瀢瑡≨›䌢尺ぜ䄰彉塅屐ꒋꓬ䆑겵뛬鲋黬岑ꒊ苭ꢪ鷬岌慜⵩潣汬扡牯瑡潩屮卜䥋䱌洮≤਍†ⱽ਍†ൻ †∠慮敭㨢∠歳汩⵬牣慥潴≲ബ †∠敤捳楲瑰潩≮›뒝貛臭ꒊ軭뒝諬邗蓬ₜ黬겂髬₩냪ꖊ闭ₜ諬겂鷬₄菬鲡貧鏫낱苫ₘ룪뒡ꒊ苭蒝颈ꃬ슕鲰蓬슠育ꛬꂕ貕겂髬鲕诫⺤颀黬낸蛬鲰蓬ₜ鏬钊ꒊ苭蒝貧鏫뒖ꓬ馀달벟ꒊ苭€菬놄鷬₴ꫫ膠鷬₸髬궲韬ₐꃬꦚ闭납‬黬낸蛬鲰蓬ₜ黬뒲ꗫ₼黬놄闭₴诫벝諫ₔ髬궲돪₼뗪蒶闭ꒋ∮ബ †∠慰桴㨢∠㩃屜〰䥁䕟偘屜诫醤䥁뗪閶诬醞屜諬겂ꫫ貝屜歳汩⵬牣慥潴屲卜䥋䱌洮≤਍†ൽ崊਍

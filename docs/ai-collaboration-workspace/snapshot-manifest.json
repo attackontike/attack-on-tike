@@ -1,0 +1,310 @@
+{
+  "recordedDate": "2026-11-18",
+  "timezone": "Asia/Seoul",
+  "destination": "attackontike/attack-on-tike/docs/ai-collaboration-workspace",
+  "omitted": [
+    "로컬 세션 상태",
+    "전송 잠금"
+  ],
+  "sanitization": [
+    "사용자 이메일 가림",
+    "로컬 절대 경로 가림/상대 링크화",
+    "자동 지침 파일명과 겹치는 회의 원문 파일명 변경"
+  ],
+  "sources": [
+    {
+      "source": "AGENTS.md",
+      "path": "AGENTS.md",
+      "sha256": "7266fe2cc58756d4271b7bdc3ae41e13fc460528319194af84f84c5f3eb25245",
+      "publishedSha256": "7266fe2cc58756d4271b7bdc3ae41e13fc460528319194af84f84c5f3eb25245",
+      "sanitized": false
+    },
+    {
+      "source": "CLAUDE.md",
+      "path": "CLAUDE.md",
+      "sha256": "6edfedc18d97b9f0384b967a775d83d2ee3700d9f0032fb0e57750f92ce77ec1",
+      "publishedSha256": "6edfedc18d97b9f0384b967a775d83d2ee3700d9f0032fb0e57750f92ce77ec1",
+      "sanitized": false
+    },
+    {
+      "source": "GEMINI.md",
+      "path": "GEMINI.md",
+      "sha256": "05409416e44b5c72649db4e03a12b01894a18a56b9dfe6dcf253160932ee7a6f",
+      "publishedSha256": "05409416e44b5c72649db4e03a12b01894a18a56b9dfe6dcf253160932ee7a6f",
+      "sanitized": false
+    },
+    {
+      "source": "law.md",
+      "path": "law.md",
+      "sha256": "d865b06270acbc7f409b471c84a561f283e46fcfc29ed21ca0e48a9259df969f",
+      "publishedSha256": "d865b06270acbc7f409b471c84a561f283e46fcfc29ed21ca0e48a9259df969f",
+      "sanitized": false
+    },
+    {
+      "source": "도구/claude-bridge/USAGE.md",
+      "path": "도구/claude-bridge/USAGE.md",
+      "sha256": "7d0bb3c07aac94792e4ff7c57016358f7cf5142f4c91f1be424775c04f7c48c7",
+      "publishedSha256": "7d0bb3c07aac94792e4ff7c57016358f7cf5142f4c91f1be424775c04f7c48c7",
+      "sanitized": false
+    },
+    {
+      "source": "도구/claude-bridge/bridge.mjs",
+      "path": "도구/claude-bridge/bridge.mjs",
+      "sha256": "61858d84bb46d52e9f4e41ca9e223c9ac3d6a35c646f15b89e15648c7623916b",
+      "publishedSha256": "61858d84bb46d52e9f4e41ca9e223c9ac3d6a35c646f15b89e15648c7623916b",
+      "sanitized": false
+    },
+    {
+      "source": "도구/claude-bridge/bridge.test.mjs",
+      "path": "도구/claude-bridge/bridge.test.mjs",
+      "sha256": "121fd969bed211489a7500f29de859239ac9e09bab2a84c06dc03dc686605343",
+      "publishedSha256": "121fd969bed211489a7500f29de859239ac9e09bab2a84c06dc03dc686605343",
+      "sanitized": false
+    },
+    {
+      "source": "도구/claude-bridge/verify.mjs",
+      "path": "도구/claude-bridge/verify.mjs",
+      "sha256": "f6b4b9033a88387c4bc055e981b7b438a9ef30b0dc35a00a42ebd889359f3087",
+      "publishedSha256": "f6b4b9033a88387c4bc055e981b7b438a9ef30b0dc35a00a42ebd889359f3087",
+      "sanitized": false
+    },
+    {
+      "source": "도구/github-record/export.mjs",
+      "path": "도구/github-record/export.mjs",
+      "sha256": "5e8b0a1668cacf671c120bfd8ece3a81c9370dfbcd14bceff5478dfb6e8622c4",
+      "publishedSha256": "5e8b0a1668cacf671c120bfd8ece3a81c9370dfbcd14bceff5478dfb6e8622c4",
+      "sanitized": false
+    },
+    {
+      "source": "스킬모음/ai-collaboration/SKILL.md",
+      "path": "스킬모음/ai-collaboration/SKILL.md",
+      "sha256": "748fe1781a43b84da02365b2b7bd6954cc213c7f1a000e4c567dbb99d7ce81b4",
+      "publishedSha256": "748fe1781a43b84da02365b2b7bd6954cc213c7f1a000e4c567dbb99d7ce81b4",
+      "sanitized": false
+    },
+    {
+      "source": "스킬모음/ai-collaboration/references/coordination-records.md",
+      "path": "스킬모음/ai-collaboration/references/coordination-records.md",
+      "sha256": "d0611a6f94489bfc99050fa80f0de5f49b5ed3aa871b48ad289d18fe0ac524d6",
+      "publishedSha256": "d0611a6f94489bfc99050fa80f0de5f49b5ed3aa871b48ad289d18fe0ac524d6",
+      "sanitized": false
+    },
+    {
+      "source": "스킬모음/skill-creator/LICENSE.txt",
+      "path": "스킬모음/skill-creator/LICENSE.txt",
+      "sha256": "14099b9c79d031b9d4b32c736a4e20f2b941f52dd79500532d62d26dd716110c",
+      "publishedSha256": "14099b9c79d031b9d4b32c736a4e20f2b941f52dd79500532d62d26dd716110c",
+      "sanitized": false
+    },
+    {
+      "source": "스킬모음/skill-creator/SKILL.md",
+      "path": "스킬모음/skill-creator/SKILL.md",
+      "sha256": "2508e28169e4bf2fb801511f25f49ed595ea9ee1224812ee18705a30d1723281",
+      "publishedSha256": "2508e28169e4bf2fb801511f25f49ed595ea9ee1224812ee18705a30d1723281",
+      "sanitized": false
+    },
+    {
+      "source": "스킬모음/skill-creator/references/workspace-workflow.md",
+      "path": "스킬모음/skill-creator/references/workspace-workflow.md",
+      "sha256": "582ab1a718560fb676f0769b465109daaa87e7949e94fac32dc307b7763bbb1b",
+      "publishedSha256": "582ab1a718560fb676f0769b465109daaa87e7949e94fac32dc307b7763bbb1b",
+      "sanitized": false
+    },
+    {
+      "source": "스킬모음/skill-creator/scripts/workspace-skills.mjs",
+      "path": "스킬모음/skill-creator/scripts/workspace-skills.mjs",
+      "sha256": "e10fae96b7e22ac0776dacf2633d3482d3280077498b5ae1bf3ad0c5013c248a",
+      "publishedSha256": "e10fae96b7e22ac0776dacf2633d3482d3280077498b5ae1bf3ad0c5013c248a",
+      "sanitized": false
+    },
+    {
+      "source": "스킬모음/skill-creator/scripts/workspace-skills.test.mjs",
+      "path": "스킬모음/skill-creator/scripts/workspace-skills.test.mjs",
+      "sha256": "5e96839be43b1c82cbb5e9a79bbb6d338db03746acf054117d4fdf10b69b9677",
+      "publishedSha256": "a4c0e5f40f5ecf53ab8a307211eb8a39d19d46d8adb19ca1568b0c4b92f703e8",
+      "sanitized": true
+    },
+    {
+      "source": "협의/ai-collaboration/claude-2.md",
+      "path": "협의/ai-collaboration/claude-2.md",
+      "sha256": "e1994012e3553130bcd42fec4cec65edbd94f52b697250ef7773dde810747913",
+      "publishedSha256": "e1994012e3553130bcd42fec4cec65edbd94f52b697250ef7773dde810747913",
+      "sanitized": false
+    },
+    {
+      "source": "협의/ai-collaboration/claude-3.md",
+      "path": "협의/ai-collaboration/claude-3.md",
+      "sha256": "db89d0537b870f1ffb36f85639743aae3ba9c68d4e9e856efb381ce742721b22",
+      "publishedSha256": "db89d0537b870f1ffb36f85639743aae3ba9c68d4e9e856efb381ce742721b22",
+      "sanitized": false
+    },
+    {
+      "source": "협의/ai-collaboration/claude-4.md",
+      "path": "협의/ai-collaboration/claude-4.md",
+      "sha256": "f23d1e39c7de9febbbdf35007022a0e3940d17ec68a95c6087271f322715d0e8",
+      "publishedSha256": "f23d1e39c7de9febbbdf35007022a0e3940d17ec68a95c6087271f322715d0e8",
+      "sanitized": false
+    },
+    {
+      "source": "협의/ai-collaboration/claude.md",
+      "path": "협의/ai-collaboration/msg-claude-cli-1.md",
+      "sha256": "7b802e0f65650086482346186bc74941884f5054dd877581d5fc571d2273fde2",
+      "publishedSha256": "7b802e0f65650086482346186bc74941884f5054dd877581d5fc571d2273fde2",
+      "sanitized": false
+    },
+    {
+      "source": "협의/ai-collaboration/codex.md",
+      "path": "협의/ai-collaboration/codex.md",
+      "sha256": "8bf9c040b0cbd965aede8c1f74167f5d23cee295e3e451a19fe9e23dbf873acb",
+      "publishedSha256": "8bf9c040b0cbd965aede8c1f74167f5d23cee295e3e451a19fe9e23dbf873acb",
+      "sanitized": false
+    },
+    {
+      "source": "협의/ai-collaboration/msg-claude-ui.md",
+      "path": "협의/ai-collaboration/msg-claude-ui.md",
+      "sha256": "c2c7f34ec8e7b46ad360686e0d3adbbb3caa956cb31476f3e50dee2852d2d967",
+      "publishedSha256": "c2c7f34ec8e7b46ad360686e0d3adbbb3caa956cb31476f3e50dee2852d2d967",
+      "sanitized": false
+    },
+    {
+      "source": "협의/ai-collaboration/검증결과.txt",
+      "path": "협의/ai-collaboration/검증결과.txt",
+      "sha256": "bc1681c047fa7d12d2617e1d0c6570c3dfdf633cc28e7c6fedc43812e712ca28",
+      "publishedSha256": "bc1681c047fa7d12d2617e1d0c6570c3dfdf633cc28e7c6fedc43812e712ca28",
+      "sanitized": false
+    },
+    {
+      "source": "협의/ai-collaboration/대화/5839e56c-0a1b-4fd3-b9d0-93c3aec35731.json",
+      "path": "협의/ai-collaboration/대화/5839e56c-0a1b-4fd3-b9d0-93c3aec35731.json",
+      "sha256": "9e3022f49e2da84add5d78eeef94ff375716f8a7d5f25bd1f717dcbc057bd5cd",
+      "publishedSha256": "7bf059e17ac2cc7dcc2f1d5c507e2fe759e201c9362b25aa9c8a7a001edcbaa7",
+      "sanitized": true
+    },
+    {
+      "source": "협의/ai-collaboration/대화/a2db3bd1-904e-4baa-854e-49600d9f8d91.json",
+      "path": "협의/ai-collaboration/대화/a2db3bd1-904e-4baa-854e-49600d9f8d91.json",
+      "sha256": "208223ba5ae02df555a1582a68e419f7d2064f9c5387d45d83d5fb55085a60fa",
+      "publishedSha256": "81a2e3a39ab1cc79631741e9ba4f1c9a3805b33e237912097371dfd07343dde7",
+      "sanitized": true
+    },
+    {
+      "source": "협의/ai-collaboration/대화/bf73f57a-d083-45d0-aee1-2bc48c372462.json",
+      "path": "협의/ai-collaboration/대화/bf73f57a-d083-45d0-aee1-2bc48c372462.json",
+      "sha256": "e5fa1ae367d58cc313f01a90ac7f0230bfbe5e5d88ba56753c5623230a39d857",
+      "publishedSha256": "b7e5a9d8352989eb5c87ccd84280063827f99f363bbee95baae5e81b6cc2cb00",
+      "sanitized": true
+    },
+    {
+      "source": "협의/ai-collaboration/대화/c453a8bc-100b-4d9c-8db4-dbc0e9251160.json",
+      "path": "협의/ai-collaboration/대화/c453a8bc-100b-4d9c-8db4-dbc0e9251160.json",
+      "sha256": "e8f621677eecf885f1ac4e2aa4558dcbb6561c1aac37358f73ffb57de14aab43",
+      "publishedSha256": "87946ab1021c8a583bdfcb461c9197d1535fcd87668ea479ed6d8d2d7d3d583e",
+      "sanitized": true
+    },
+    {
+      "source": "협의/ai-collaboration/대화/d02ce3b9-0cc1-4f1d-8a0f-75f032c283ba.json",
+      "path": "협의/ai-collaboration/대화/d02ce3b9-0cc1-4f1d-8a0f-75f032c283ba.json",
+      "sha256": "19fb0b7d6d7f477bf711516435a7a2cec0d295146f836bb93addaf31146c769f",
+      "publishedSha256": "4d59bb65652c87cd8fa64fbff90d45b53407b3509192b8a6619f9f93787ac5ff",
+      "sanitized": true
+    },
+    {
+      "source": "협의/ai-collaboration/두번째-메시지.txt",
+      "path": "협의/ai-collaboration/두번째-메시지.txt",
+      "sha256": "641ec535a1ba362eb2e1f8c789ecaefaec80ec68bb6c779017f7a905b4ab7434",
+      "publishedSha256": "641ec535a1ba362eb2e1f8c789ecaefaec80ec68bb6c779017f7a905b4ab7434",
+      "sanitized": false
+    },
+    {
+      "source": "협의/ai-collaboration/메시지/claude-ui-001-proposal.md",
+      "path": "협의/ai-collaboration/메시지/claude-ui-001-proposal.md",
+      "sha256": "6dadcaa86feab4423ad49b28b9d3396adf94ed32260ee9900eb183fb567eb337",
+      "publishedSha256": "6dadcaa86feab4423ad49b28b9d3396adf94ed32260ee9900eb183fb567eb337",
+      "sanitized": false
+    },
+    {
+      "source": "협의/ai-collaboration/메시지/claude-ui/claude-ui-04faf9a1-62d4-4ce7-bddc-dca810eed4ca.json",
+      "path": "협의/ai-collaboration/메시지/claude-ui/claude-ui-04faf9a1-62d4-4ce7-bddc-dca810eed4ca.json",
+      "sha256": "fff4663de7dc11e30825530ce41a23da75970d303272e8157490eeb05848cdbf",
+      "publishedSha256": "fff4663de7dc11e30825530ce41a23da75970d303272e8157490eeb05848cdbf",
+      "sanitized": false
+    },
+    {
+      "source": "협의/ai-collaboration/메시지/claude-ui/claude-ui-3f583759-08fb-4968-bf8f-a8cdb9c1f499.json",
+      "path": "협의/ai-collaboration/메시지/claude-ui/claude-ui-3f583759-08fb-4968-bf8f-a8cdb9c1f499.json",
+      "sha256": "a44708003cfd63787436bad983283be466e14cc16a8c15f867d205ee0c1fb5b9",
+      "publishedSha256": "a44708003cfd63787436bad983283be466e14cc16a8c15f867d205ee0c1fb5b9",
+      "sanitized": false
+    },
+    {
+      "source": "협의/ai-collaboration/메시지/claude-ui/claude-ui-48592bee-5dbc-496b-88a8-afbdbf8a4b28.json",
+      "path": "협의/ai-collaboration/메시지/claude-ui/claude-ui-48592bee-5dbc-496b-88a8-afbdbf8a4b28.json",
+      "sha256": "5c4faa452177874c0ab3a1e3a421cde2f9b133f65837698f775240a1e0c30678",
+      "publishedSha256": "5c4faa452177874c0ab3a1e3a421cde2f9b133f65837698f775240a1e0c30678",
+      "sanitized": false
+    },
+    {
+      "source": "협의/ai-collaboration/메시지/claude-ui/claude-ui-5ba75135-e3b3-4017-b27a-69836e3fa8d6.json",
+      "path": "협의/ai-collaboration/메시지/claude-ui/claude-ui-5ba75135-e3b3-4017-b27a-69836e3fa8d6.json",
+      "sha256": "18fb4e098baeb0641acebaaa0204ac6083f8b70edb12a5ef4b623c1fa6548587",
+      "publishedSha256": "18fb4e098baeb0641acebaaa0204ac6083f8b70edb12a5ef4b623c1fa6548587",
+      "sanitized": false
+    },
+    {
+      "source": "협의/ai-collaboration/메시지/claude-ui/claude-ui-eb72d67f-b90f-49f6-a1fb-c6979e61bd65.json",
+      "path": "협의/ai-collaboration/메시지/claude-ui/claude-ui-eb72d67f-b90f-49f6-a1fb-c6979e61bd65.json",
+      "sha256": "a2686f40c1d4e5ad909aa8cd08479c542fecade325556d6b05196dd7af9f9a48",
+      "publishedSha256": "a2686f40c1d4e5ad909aa8cd08479c542fecade325556d6b05196dd7af9f9a48",
+      "sanitized": false
+    },
+    {
+      "source": "협의/ai-collaboration/메시지/codex-exec-001-decision.md",
+      "path": "협의/ai-collaboration/메시지/codex-exec-001-decision.md",
+      "sha256": "940793956f8877639e7f9caeb450cd94a1689799b0b1c395918856a0a89abe4c",
+      "publishedSha256": "940793956f8877639e7f9caeb450cd94a1689799b0b1c395918856a0a89abe4c",
+      "sanitized": false
+    },
+    {
+      "source": "협의/ai-collaboration/메시지/codex-exec/codex-exec-9c662cae-0078-4295-a79e-fdf8c3843350.json",
+      "path": "협의/ai-collaboration/메시지/codex-exec/codex-exec-9c662cae-0078-4295-a79e-fdf8c3843350.json",
+      "sha256": "298ea2ba411d2e68bc8135c8bf35ee5087f8660cd4bd111c543bded0c3d8e1ca",
+      "publishedSha256": "38401521e846aee92834ef2b7214ea5e53be862c17aae03e70790734c8ea19c9",
+      "sanitized": true
+    },
+    {
+      "source": "협의/ai-collaboration/메시지/codex-exec/codex-exec-d2210173-9827-4b92-abab-e24337d26ce2.json",
+      "path": "협의/ai-collaboration/메시지/codex-exec/codex-exec-d2210173-9827-4b92-abab-e24337d26ce2.json",
+      "sha256": "f40beeefe92153edbb178b7c3bcabc170de21fd0098640c1a448193b08d5f2f3",
+      "publishedSha256": "a57a9ba645e665b4d5e8da21e8f538fdf2ec8fbb550dd6ad40825a38f88947df",
+      "sanitized": true
+    },
+    {
+      "source": "협의/ai-collaboration/재검토-메시지.txt",
+      "path": "협의/ai-collaboration/재검토-메시지.txt",
+      "sha256": "d8e3052a4d0ff9edf72cf03d059d025fefb0902950176b437306954e46b05c43",
+      "publishedSha256": "d8e3052a4d0ff9edf72cf03d059d025fefb0902950176b437306954e46b05c43",
+      "sanitized": false
+    },
+    {
+      "source": "협의/ai-collaboration/첫-메시지.txt",
+      "path": "협의/ai-collaboration/첫-메시지.txt",
+      "sha256": "f6428b1443e78822e04048886ced68e1f759feab1eac25cd3c95c494afde3941",
+      "publishedSha256": "f6428b1443e78822e04048886ced68e1f759feab1eac25cd3c95c494afde3941",
+      "sanitized": false
+    },
+    {
+      "source": "협의/ai-collaboration/최종검토-메시지.txt",
+      "path": "협의/ai-collaboration/최종검토-메시지.txt",
+      "sha256": "989344d67e08ca80be8285fa083e869627696e75d3ad5a34073ea160c8bf549a",
+      "publishedSha256": "989344d67e08ca80be8285fa083e869627696e75d3ad5a34073ea160c8bf549a",
+      "sanitized": false
+    },
+    {
+      "source": "협의/ai-collaboration/회의결과.md",
+      "path": "협의/ai-collaboration/회의결과.md",
+      "sha256": "40425b32bf02836c26e133d9772018145debd465d1717792ab0c2c54cc80896c",
+      "publishedSha256": "8ab5192978c248505a5001c9853021914a752e06eff4588c850a418857e877bd",
+      "sanitized": true
+    }
+  ]
+}
