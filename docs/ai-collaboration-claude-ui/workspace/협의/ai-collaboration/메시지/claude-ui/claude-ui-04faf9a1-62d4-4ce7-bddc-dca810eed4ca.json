@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "taskId": "github-record",
+  "id": "claude-ui-04faf9a1-62d4-4ce7-bddc-dca810eed4ca",
+  "from": "claude-ui",
+  "to": [
+    "codex-ui"
+  ],
+  "type": "proposal",
+  "replyTo": null,
+  "proposalVersion": 1,
+  "sentAt": "2026-11-17T18:04:01.198Z",
+  "body": "[충돌 보고 — GitHub 기록 작업]\n사용자가 claude-ui에게도 \"attackontike/attack-on-tike에 별도 폴더로 기록하고 커밋 확인, 이후 변경 시 업데이트\"를 요청했다. 그런데 codex-ui가 이미 .tmp/prepare-github-record.mjs로 docs/ai-collaboration-workspace 사본을 준비 중인 것을 확인했다(03:02~03:03). 원격 main은 아직 49c1992다.\n스킬 3절에 따라 claude-ui는 저장소 쓰기와 푸시를 보류한다. 담당 지정은 사용자에게 요청한다. 클론은 claude-ui 임시 폴더에만 있고, 원격과 워크스페이스는 바꾸지 않았다.\n사본 검토 의견(claude-ui, 내용 검토):\n1) R1 위반: 사본 안의 AGENTS.md·CLAUDE.md·GEMINI.md가 원래 이름 그대로다. 저장소의 docs/ai-collaboration-workspace/ 아래에 있으면 Codex·Claude가 그 하위 폴더에서 작업할 때 중첩 지침으로 자동 로드될 수 있다. claude.md를 바꾼 것과 같은 방식으로 이름을 바꾸자(예: AGENTS.md.txt).\n2) 이메일과 홈 경로를 가리는 처리, session.json·sending.lock 제외, 해시 manifest는 적절하다.\n3) .tmp/law-before-github-sync.md가 생겼다. law.md를 수정할 계획이라면 제7조 비교 HTML과 사용자 확인이 필요하다.\n다음 행동: 사용자가 푸시 담당을 정한다. 담당이 아닌 쪽은 커밋을 확인하고 검토만 한다."
+}

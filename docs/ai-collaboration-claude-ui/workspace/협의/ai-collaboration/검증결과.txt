@@ -1,0 +1,62 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-11-17T17:50:37.741Z",
+  "results": [
+    {
+      "command": [
+        "node",
+        "--check",
+        "도구/claude-bridge/bridge.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": "",
+      "error": null
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "도구/claude-bridge/verify.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": "",
+      "error": null
+    },
+    {
+      "command": [
+        "node",
+        "--test",
+        "도구/claude-bridge/bridge.test.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "✔ 첫 전송과 후속 전송은 같은 세션을 사용하고 한국어와 인용문을 그대로 보존한다 (29.2039ms)\n✔ 진행 중인 전송의 잠금을 다른 전송이 탈취하지 않는다 (5.7631ms)\n✔ 실패 기록을 보존하고 자동 재시도하지 않으며 잠금을 해제한다 (6.9909ms)\n✔ 세션이 달라진 응답을 성공으로 저장하지 않는다 (6.8895ms)\n✔ 실제 자식 프로세스에서 JSON 및 한국어 응답을 받는다 (84.7295ms)\n✔ 시간 초과와 잘못된 JSON을 성공으로 처리하지 않는다 (203.4253ms)\n✔ 세 번째 AI의 발신자·업무·메시지 ID를 실제 전달 본문에 넣는다 (6.4063ms)\n✔ 손상된 로그가 있어도 나머지 대화 기록을 읽을 수 있다 (10.5865ms)\nℹ tests 8\nℹ suites 0\nℹ pass 8\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 434.9115\n",
+      "stderr": "",
+      "error": null
+    },
+    {
+      "command": [
+        "node",
+        "스킬모음/skill-creator/scripts/workspace-skills.mjs",
+        "validate"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"status\": \"passed\",\n  \"count\": 2,\n  \"skills\": [\n    {\n      \"name\": \"ai-collaboration\",\n      \"description\": \"여러 AI가 공유 워크스페이스에서 업무를 협의·분담·검토·인계하거나 다른 AI가 진행 중인 작업에 합류할 때 사용한다. Claude·Codex·Gemini 등 제품에 관계없이 역할과 메시지, 파일 수정 범위를 조정한다. 단일 AI의 독립 작업에 다중 협업을 강제하지 않는다.\",\n      \"path\": \"C:\\\\00AI_EXP\\\\다중AI구축시작\\\\스킬모음\\\\ai-collaboration\\\\SKILL.md\"\n    },\n    {\n      \"name\": \"skill-creator\",\n      \"description\": \"이 워크스페이스에서 재사용 가능한 스킬을 새로 만들거나 기존 스킬을 수정·개선·검증할 때 사용한다. ‘자기소개서 쓰는 스킬을 만들어줘’처럼 스킬 생성이 목적인 요청에 적용하며, 자기소개서 자체를 작성해 달라는 요청과 구분한다.\",\n      \"path\": \"C:\\\\00AI_EXP\\\\다중AI구축시작\\\\스킬모음\\\\skill-creator\\\\SKILL.md\"\n    }\n  ]\n}\n",
+      "stderr": "",
+      "error": null
+    },
+    {
+      "command": [
+        "node",
+        "스킬모음/skill-creator/scripts/workspace-skills.mjs",
+        "catalog"
+      ],
+      "exitCode": 0,
+      "stdout": "[\n  {\n    \"name\": \"ai-collaboration\",\n    \"description\": \"여러 AI가 공유 워크스페이스에서 업무를 협의·분담·검토·인계하거나 다른 AI가 진행 중인 작업에 합류할 때 사용한다. Claude·Codex·Gemini 등 제품에 관계없이 역할과 메시지, 파일 수정 범위를 조정한다. 단일 AI의 독립 작업에 다중 협업을 강제하지 않는다.\",\n    \"path\": \"C:\\\\00AI_EXP\\\\다중AI구축시작\\\\스킬모음\\\\ai-collaboration\\\\SKILL.md\"\n  },\n  {\n    \"name\": \"skill-creator\",\n    \"description\": \"이 워크스페이스에서 재사용 가능한 스킬을 새로 만들거나 기존 스킬을 수정·개선·검증할 때 사용한다. ‘자기소개서 쓰는 스킬을 만들어줘’처럼 스킬 생성이 목적인 요청에 적용하며, 자기소개서 자체를 작성해 달라는 요청과 구분한다.\",\n    \"path\": \"C:\\\\00AI_EXP\\\\다중AI구축시작\\\\스킬모음\\\\skill-creator\\\\SKILL.md\"\n  }\n]\n",
+      "stderr": "",
+      "error": null
+    }
+  ],
+  "build": "해당 없음: 컴파일이나 패키지 의존성이 없는 Node.js 모듈"
+}
