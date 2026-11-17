@@ -1,6 +1,6 @@
 {
   "recordedBy": "claude-ui",
-  "generatedAt": "2026-11-17T18:07:34.809Z",
+  "generatedAt": "2026-11-17T18:10:23.298Z",
   "destination": "attackontike/attack-on-tike/docs/ai-collaboration-claude-ui",
   "excluded": [
     "session.json",
@@ -242,6 +242,14 @@
       "published": "workspace/협의/ai-collaboration/메시지/claude-ui/claude-ui-eb72d67f-b90f-49f6-a1fb-c6979e61bd65.json",
       "sourceSha256": "a2686f40c1d4e5ad909aa8cd08479c542fecade325556d6b05196dd7af9f9a48",
       "publishedSha256": "a2686f40c1d4e5ad909aa8cd08479c542fecade325556d6b05196dd7af9f9a48",
+      "sanitized": false,
+      "renamed": false
+    },
+    {
+      "source": "협의/ai-collaboration/메시지/claude-ui/claude-ui-f693697a-00ee-4b1e-bcef-a3d5823ca69c.json",
+      "published": "workspace/협의/ai-collaboration/메시지/claude-ui/claude-ui-f693697a-00ee-4b1e-bcef-a3d5823ca69c.json",
+      "sourceSha256": "b4c5c0359b31157186b302c02975b8b909c29f20216bdd1fd82920dbc92ee5ef",
+      "publishedSha256": "b4c5c0359b31157186b302c02975b8b909c29f20216bdd1fd82920dbc92ee5ef",
       "sanitized": false,
       "renamed": false
     },
