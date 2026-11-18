@@ -33,3 +33,13 @@ node 도구/claude-bridge/verify.mjs
 ## 기존 배포물의 라이선스
 
 기존 로컬 skill-creator에 포함되어 있던 [Apache 2.0 라이선스](스킬모음/skill-creator/LICENSE.txt)를 그대로 보존했습니다. 이 기록을 추가하면서 저장소 전체의 라이선스를 새로 지정하지 않았습니다.
+
+## 새 프로젝트에 바로 사용하는 시작 패키지
+
+- [멀티AI 시작 패키지 ZIP](배포/multi-ai-starter-v1.zip)
+- [사용 가이드 Markdown](배포/multi-ai-starter-v1/사용가이드.md)
+- [압축 전 파일 구성](배포/multi-ai-starter-v1/)
+- [원본 대비 배포본 지침 비교](배포/multi-ai-starter-v1/변경비교.html)
+
+새 프로젝트용 패키지는 제작 워크스페이스의 GitHub 대상으로 게시하지 않으며, 협업 스킬을 기본 적용하도록 시작 지침을 구성했습니다. 과거 회의·실행 세션을 제외했고, 선택형 Claude 연결은 업무 ID별로 세션을 분리합니다. ZIP을 실제로 다른 경로에 풀어 재검증했으며 테스트 29개 통과, 디렉터리 링크 관련 2개는 환경 권한 제한으로 건너뛰었습니다.
+

@@ -1,0 +1,73 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-11-18T15:37:32.639Z",
+  "results": [
+    {
+      "command": [
+        "node",
+        "--check",
+        "도구/claude-bridge/bridge.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": "",
+      "error": null
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "도구/claude-bridge/verify.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": "",
+      "error": null
+    },
+    {
+      "command": [
+        "node",
+        "--test",
+        "도구/claude-bridge/bridge.test.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "✔ 첫 전송과 후속 전송은 같은 세션을 사용하고 한국어와 인용문을 그대로 보존한다 (41.3492ms)\n✔ 진행 중인 전송의 잠금을 다른 전송이 탈취하지 않는다 (12.1895ms)\n✔ 실패 기록을 보존하고 자동 재시도하지 않으며 잠금을 해제한다 (13.0294ms)\n✔ 세션이 달라진 응답을 성공으로 저장하지 않는다 (10.7562ms)\n✔ 실제 자식 프로세스에서 JSON 및 한국어 응답을 받는다 (92.2996ms)\n✔ 시간 초과와 잘못된 JSON을 성공으로 처리하지 않는다 (217.6295ms)\n✔ 세 번째 AI의 발신자·업무·메시지 ID를 실제 전달 본문에 넣는다 (5.3268ms)\n✔ 손상된 로그가 있어도 나머지 대화 기록을 읽을 수 있다 (14.0174ms)\n✔ 다른 업무는 세션이 분리되고 같은 업무는 이어진다 (24.4905ms)\n✔ 업무 ID로 저장 경로를 벗어날 수 없다 (0.2182ms)\n✔ CLI 상태 조회도 지정한 업무만 확인하며 세션을 생성하지 않는다 (86.867ms)\nℹ tests 11\nℹ suites 0\nℹ pass 11\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 619.2449\n",
+      "stderr": "",
+      "error": null
+    },
+    {
+      "command": [
+        "node",
+        "--test",
+        "스킬모음/skill-creator/scripts/workspace-skills.test.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "✔ self-introduction example creates in canonical local root and is rediscovered (62.2747ms)\n✔ existing skill is preserved byte for byte on a duplicate creation (24.7143ms)\n✔ existing folder without SKILL.md cannot be overwritten (20.4736ms)\n✔ path traversal and malformed names never create an outside directory (45.4985ms)\n✔ hidden and ignored nested files are included in discovery (90.3498ms)\n✔ invalid metadata and duplicate names fail visibly instead of disappearing (80.6214ms)\n﹣ directory link escaping workspace is rejected (4.1606ms) # Directory links unavailable: EPERM\n﹣ cyclic directory link fails visibly without recursive looping (2.4166ms) # Directory links unavailable: EPERM\n✔ missing references fail and available references pass (26.3167ms)\n✔ out-of-skill references fail rather than depending on unrelated files (12.0567ms)\n✔ UTF-8 BOM, CRLF and folded descriptions can be read (15.5906ms)\n✔ unfinished instructions and empty bodies cannot be published by create (14.8561ms)\n✔ CLI returns a failure exit code for an unknown option (70.7194ms)\n✔ CLI create and validate work end to end with Korean arguments and paths (220.8695ms)\n✔ malformed UTF-8 and folder/name mismatch are reported (41.121ms)\n✔ default root stays anchored to script when invoked from a nested directory (83.3419ms)\n✔ current production skill and every documented relative reference validate (29.0282ms)\n✔ local absolute links are rejected across operating system path formats (98.0432ms)\n✔ relative links with spaces and Unicode survive relocation while source URLs stay external (32.4631ms)\n✔ copied project discovers and creates skills from unrelated cwd using relative arguments (431.5704ms)\nℹ tests 20\nℹ suites 0\nℹ pass 18\nℹ fail 0\nℹ cancelled 0\nℹ skipped 2\nℹ todo 0\nℹ duration_ms 1609.5119\n",
+      "stderr": "",
+      "error": null
+    },
+    {
+      "command": [
+        "node",
+        "스킬모음/skill-creator/scripts/workspace-skills.mjs",
+        "validate"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"status\": \"passed\",\n  \"count\": 2,\n  \"skills\": [\n    {\n      \"name\": \"ai-collaboration\",\n      \"description\": \"여러 AI가 공유 워크스페이스에서 업무를 협의·분담·검토·인계하거나 다른 AI가 진행 중인 작업에 합류할 때 사용한다. Claude·Codex·Gemini 등 제품에 관계없이 역할과 메시지, 파일 수정 범위를 조정한다. 단일 AI의 독립 작업에 다중 협업을 강제하지 않는다.\",\n      \"path\": \"<PACKAGE_ROOT>\\\\스킬모음\\\\ai-collaboration\\\\SKILL.md\"\n    },\n    {\n      \"name\": \"skill-creator\",\n      \"description\": \"이 워크스페이스에서 재사용 가능한 스킬을 새로 만들거나 기존 스킬을 수정·개선·검증할 때 사용한다. ‘자기소개서 쓰는 스킬을 만들어줘’처럼 스킬 생성이 목적인 요청에 적용하며, 자기소개서 자체를 작성해 달라는 요청과 구분한다.\",\n      \"path\": \"<PACKAGE_ROOT>\\\\스킬모음\\\\skill-creator\\\\SKILL.md\"\n    }\n  ]\n}\n",
+      "stderr": "",
+      "error": null
+    },
+    {
+      "command": [
+        "node",
+        "스킬모음/skill-creator/scripts/workspace-skills.mjs",
+        "catalog"
+      ],
+      "exitCode": 0,
+      "stdout": "[\n  {\n    \"name\": \"ai-collaboration\",\n    \"description\": \"여러 AI가 공유 워크스페이스에서 업무를 협의·분담·검토·인계하거나 다른 AI가 진행 중인 작업에 합류할 때 사용한다. Claude·Codex·Gemini 등 제품에 관계없이 역할과 메시지, 파일 수정 범위를 조정한다. 단일 AI의 독립 작업에 다중 협업을 강제하지 않는다.\",\n    \"path\": \"<PACKAGE_ROOT>\\\\스킬모음\\\\ai-collaboration\\\\SKILL.md\"\n  },\n  {\n    \"name\": \"skill-creator\",\n    \"description\": \"이 워크스페이스에서 재사용 가능한 스킬을 새로 만들거나 기존 스킬을 수정·개선·검증할 때 사용한다. ‘자기소개서 쓰는 스킬을 만들어줘’처럼 스킬 생성이 목적인 요청에 적용하며, 자기소개서 자체를 작성해 달라는 요청과 구분한다.\",\n    \"path\": \"<PACKAGE_ROOT>\\\\스킬모음\\\\skill-creator\\\\SKILL.md\"\n  }\n]\n",
+      "stderr": "",
+      "error": null
+    }
+  ],
+  "build": "해당 없음: 컴파일이나 패키지 의존성이 없는 Node.js 모듈"
+}

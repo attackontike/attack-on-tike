@@ -1,0 +1,115 @@
+{
+  "package": "multi-ai-starter",
+  "version": 1,
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "02010ce9bb275c161b20895d02b8bc61fbb460622b08a2ff60f2420f7d7e2797"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "bcd950f3c288c166d44baf20a0da704497e45f8e7a09739af4c587d4015062bc"
+    },
+    {
+      "path": "Claude-회의요청.txt",
+      "sha256": "87b7e9ba75ae7b73026814674614758ec0c7e5b121054f15ded36360313a872b"
+    },
+    {
+      "path": "CLAUDE.md",
+      "sha256": "5e32232dd9e7384fab96f2d5b748d88b41d9ae35b3566e76f49e2694f9317a9a"
+    },
+    {
+      "path": "GEMINI.md",
+      "sha256": "8c58a8ffb65bf6d4546972a6624d8d5a79c5fc969344bbb1fdc547f6e242466f"
+    },
+    {
+      "path": "law.md",
+      "sha256": "f284b4283f54a22059342c4c4738b972f31374bf3885354ed5e2d3684a91c141"
+    },
+    {
+      "path": "README.md",
+      "sha256": "138c2b9fdf6517f8769de35cd2f62a2b9264aef1d5652d0d08a91c4a1d557e95"
+    },
+    {
+      "path": "검증결과.json",
+      "sha256": "3a946b6f90ba04d8d74992c485689d8c5af638f13bcc88bc1a8927772ee749b1"
+    },
+    {
+      "path": "도구/claude-bridge/bridge.mjs",
+      "sha256": "88c4f64bc695d9434dc4e7c637c29edaee28157d62b7564559ee5113d8ecf970"
+    },
+    {
+      "path": "도구/claude-bridge/bridge.test.mjs",
+      "sha256": "d55bb0eb4872c745d5fe4cfc6e23dfd826cd4a197cf9ba98c6e9f8b94ab715e4"
+    },
+    {
+      "path": "도구/claude-bridge/USAGE.md",
+      "sha256": "a176ee17113b00214ac623e6d38ecfda2c1025b38654af72cc910602ba7ac540"
+    },
+    {
+      "path": "도구/claude-bridge/verify.mjs",
+      "sha256": "cf42d928febbcc73df401216f8fd33056d67b67f9c9b8aa4f63168aeb8803833"
+    },
+    {
+      "path": "변경비교.html",
+      "sha256": "b9d6a366bd78d8343ca8e5863c88c0889c4ee4966319f460070e472f2b35e3a2"
+    },
+    {
+      "path": "사용가이드.md",
+      "sha256": "84bc780b76ae713a6fcf4e7756e88652df5460b5d0e2cf836ac8380f85e676df"
+    },
+    {
+      "path": "스킬모음/ai-collaboration/references/coordination-records.md",
+      "sha256": "d0611a6f94489bfc99050fa80f0de5f49b5ed3aa871b48ad289d18fe0ac524d6"
+    },
+    {
+      "path": "스킬모음/ai-collaboration/SKILL.md",
+      "sha256": "748fe1781a43b84da02365b2b7bd6954cc213c7f1a000e4c567dbb99d7ce81b4"
+    },
+    {
+      "path": "스킬모음/skill-creator/LICENSE.txt",
+      "sha256": "14099b9c79d031b9d4b32c736a4e20f2b941f52dd79500532d62d26dd716110c"
+    },
+    {
+      "path": "스킬모음/skill-creator/references/workspace-workflow.md",
+      "sha256": "484bf358d5b73db591189c0f7992905f1a895bfe793634545eb83f7bd1bd3f2e"
+    },
+    {
+      "path": "스킬모음/skill-creator/scripts/workspace-skills.mjs",
+      "sha256": "e10fae96b7e22ac0776dacf2633d3482d3280077498b5ae1bf3ad0c5013c248a"
+    },
+    {
+      "path": "스킬모음/skill-creator/scripts/workspace-skills.test.mjs",
+      "sha256": "4f1be48dc76abe6f5ae948dd165e8f7051d9faf573dffa3cf874a7be4f8ec2ac"
+    },
+    {
+      "path": "스킬모음/skill-creator/SKILL.md",
+      "sha256": "2508e28169e4bf2fb801511f25f49ed595ea9ee1224812ee18705a30d1723281"
+    },
+    {
+      "path": "시작문.txt",
+      "sha256": "0305b383b9d1e2cc13ae22fc590dd9c5094bb04030af33e21e554dea8a29757b"
+    }
+  ],
+  "sourceFilesRead": [
+    "스킬모음/ai-collaboration/references/coordination-records.md",
+    "스킬모음/ai-collaboration/SKILL.md",
+    "스킬모음/skill-creator/LICENSE.txt",
+    "스킬모음/skill-creator/references/workspace-workflow.md",
+    "스킬모음/skill-creator/scripts/workspace-skills.mjs",
+    "스킬모음/skill-creator/scripts/workspace-skills.test.mjs",
+    "스킬모음/skill-creator/SKILL.md",
+    "law.md",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "GEMINI.md",
+    "도구/claude-bridge/bridge.mjs",
+    "도구/claude-bridge/bridge.test.mjs",
+    "도구/claude-bridge/verify.mjs",
+    "도구/claude-bridge/USAGE.md",
+    "도구/starter-kit/assets/사용가이드.md"
+  ],
+  "validation": "passed",
+  "instructionComparisonCount": 14,
+  "automaticGithubPublishing": false
+}
